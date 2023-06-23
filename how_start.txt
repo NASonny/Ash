@@ -1,0 +1,13 @@
+1) Install env in your folder with "python -m venv env"
+
+2) Install "pip install python-dotenv" to be able to use the .env you will create
+
+3) Install "pip install discord.py" and you will be good if thats all you need if its not 
+
+So don't forget to install in the env and not out because it won't work !
+
+4) SQL
+
+5) API 
+
+6) etc....
