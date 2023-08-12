@@ -6,10 +6,12 @@ import os
 
 class Bot(commands.Bot):
     def __init__(self) -> None:
-        super().__init__(command_prefix="!", intents=discord.Intents.all())
+        super().__init__(command_prefix="!" ,intents=discord.Intents.all())
         
     async def setup_hook(self) -> None:
         await self.load_extension("cogs.chatgpt")
+        await self.load_extension("cogs.birthday")
+        await self.load_extension("cogs.help")
         await self.tree.sync()
         
     async def on_ready(self) -> None:
