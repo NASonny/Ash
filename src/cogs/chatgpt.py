@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import app_commands
 
 import openai
 import os
@@ -12,7 +13,7 @@ class ChatGPT(commands.Cog):
         
         openai.api_key = os.getenv("API_GPT_KEY")
     
-    @commands.hybrid_command(name="chatgpt")
+    @commands.hybrid_command(name="chatgpt", description="You can ask every question you have to ChatGPT and it will give the answer.")
     async def ask_for_response(self, ctx : commands.Context, *, question : str) -> discord.Message:
         await ctx.defer()
         

@@ -9,11 +9,13 @@ class Bot(commands.Bot):
         super().__init__(command_prefix="!" ,intents=discord.Intents.all())
         
     async def setup_hook(self) -> None:
+        
         await self.load_extension("cogs.chatgpt")
         await self.load_extension("cogs.birthday")
         await self.load_extension("cogs.help")
-        await self.tree.sync()
         
+        await self.tree.sync()
+       
     async def on_ready(self) -> None:
         print("Ash is ready!")
         
