@@ -1,15 +1,16 @@
 import discord
+from discord import app_commands
 from discord.ext import commands
 
-#! Faire de la pagination pour le help ça sera mieux mais j'aimerais d'abord faire le stockage sql pour les dates d'anniv
+#! Faire de la pagination pour le help ça sera mieux
 
 class Help(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
     
-    @commands.hybrid_command(name="helps")
+    @app_commands.command(name="help")
     async def help(self, ctx: commands.Context) -> discord.Message:
-        await ctx.defer()
+
         
         help_embed = discord.Embed(
             title="**Help**",
@@ -20,7 +21,7 @@ class Help(commands.Cog):
         help_embed.add_field(
             name="/bday",
             value="Initialise your birthday and receive personalised birthday messages\n",
-            inline=True
+            inline=False
         )
         
         help_embed.add_field(
@@ -30,7 +31,7 @@ class Help(commands.Cog):
         )
         
         
-        return await ctx.send(embed=help_embed)
+        return await ctx.response.send_message(embed=help_embed)
 
 async def setup(bot : commands.Bot) -> None:
     await bot.add_cog(Help(bot))

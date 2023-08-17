@@ -1,6 +1,5 @@
 import discord
 from discord import app_commands
-# I could use this too -> from discord.ext.commands import slash_command
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
@@ -15,9 +14,6 @@ db = sqlite3.connect(db_path)
 cursor = db.cursor()
 db.execute("CREATE TABLE IF NOT EXISTS users(username TEXT NOT NULL, id INT PRIMARY KEY, birthdate TEXT NOT NULL)")
 
-"""
-! Faire une gestion d'erreur de si la personne essaye de mettre de nouveau son anniversaire par rapport à l'ID qui est censé être unique 
-"""
 
 class Birthday(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -42,9 +38,25 @@ class Birthday(commands.Cog):
         # This will take the name of the month from the parsed date just above
         month_name = parsed_date.strftime('***%B***')
         
-        query = "INSERT INTO users VALUES (?, ?, ?)"
-        cursor.execute(query, (get_user_id_by_name, get_user_id, parsed_date))
-        db.commit()
+        #query = "INSERT INTO users VALUES (?, ?, ?)"
+        #cursor.execute(query, (get_user_id_by_name, get_user_id, parsed_date))
+        #db.commit()
+        
+        cursor.execute("SELECT id FROM users WHERE id = ?", (get_user_id,))
+        existing_user = cursor.fetchone()
+
+        if existing_user:
+            # Update existing user's information
+            update_query = "UPDATE users SET username = ?, birthdate = ? WHERE id = ?"
+            cursor.execute(update_query, (get_user_id_by_name, parsed_date, get_user_id))
+            db.commit()
+            print("User information updated.")
+        else:
+            # Insert new user
+            insert_query = "INSERT INTO users (username, id, birthdate) VALUES (?, ?, ?)"
+            cursor.execute(insert_query, (get_user_id_by_name,  get_user_id, parsed_date))
+            db.commit()
+            print("New user inserted.")
         
     
         response = f"Hi {get_user_id_by_name} ! your Birthday is assigned for {parsed_date.strftime('***%d***')} {month_name}, see you soon (ᵔ.ᵔ) "
