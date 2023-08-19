@@ -1,6 +1,7 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
+
 import asyncio
 
 from dotenv import load_dotenv
@@ -23,11 +24,9 @@ class Bot(commands.Bot):
         await asyncio.sleep(1)
     
     async def on_ready(self) -> None:
+        print(f" [i] Running on discord: {discord.__version__}v")
+        print(f" [i] Running on Python: {platform.python_version()}v\n") 
         print(f"  {self.user.name} is ready (^ v ^)    ")
-        print('------------------------')
-        print(f"  Running on discord: {discord.__version__}v")
-        print('------------------------')
-        print(f"  Running on Python: {platform.python_version()}v")
         await Bot.change_presence(self, activity=discord.Activity(type=discord.ActivityType.listening, name="【Ado】踊 (Odo)"))
         
 def main() -> None:

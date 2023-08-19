@@ -12,6 +12,8 @@
 
 5) pip install requests 
 
+6) Pip instlal -U pytz (This will get the timezone in the code)
+
 So don't forget to install in the env and not out because it won't work !
 
 4) SQL

@@ -8,7 +8,7 @@ import sqlite3
 
 load_dotenv()
 
-db_path = os.environ.get('DB_PATH')
+db_path = os.getenv('DB_PATH')
 print("Database path:", db_path)  # Print the path to verify it
 db = sqlite3.connect(db_path)
 cursor = db.cursor()
@@ -50,13 +50,13 @@ class Birthday(commands.Cog):
             update_query = "UPDATE users SET username = ?, birthdate = ? WHERE id = ?"
             cursor.execute(update_query, (get_user_id_by_name, parsed_date, get_user_id))
             db.commit()
-            print("User information updated.")
+            print("[i] User information updated.")
         else:
             # Insert new user
             insert_query = "INSERT INTO users (username, id, birthdate) VALUES (?, ?, ?)"
             cursor.execute(insert_query, (get_user_id_by_name,  get_user_id, parsed_date))
             db.commit()
-            print("New user inserted.")
+            print("[i] New user inserted.")
         
     
         response = f"Hi {get_user_id_by_name} ! your Birthday is assigned for {parsed_date.strftime('***%d***')} {month_name}, see you soon (ᵔ.ᵔ) "
@@ -64,6 +64,5 @@ class Birthday(commands.Cog):
         # This command will not now dm the user but respond it in the channel where the command has been used and nobody but him will this the answer
         return await ctx.response.send_message(response, ephemeral=True)
     
-        
 async def setup(bot : commands.Bot) -> None:
     await bot.add_cog(Birthday(bot))
