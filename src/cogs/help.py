@@ -6,7 +6,6 @@ from cogs import chatgpt
 from cogs import core
 from typing import Callable, Optional
 import math
-#! Faire de la pagination pour le help ça sera mieux
 
 class Pagination(discord.ui.View):
     def __init__(self, interaction: discord.Interaction, get_page: Callable):
@@ -22,7 +21,7 @@ class Pagination(discord.ui.View):
         else:
             emb = discord.Embed(
                 description=f"Only the author of the command can perform this action.",
-                color=16711680
+                color=discord.Color.from_rgb(255, 255, 255)
             )
             await interaction.response.send_message(embed=emb, ephemeral=True)
             return False
@@ -74,7 +73,7 @@ class Help(commands.Cog):
           ("ping", f"*{core.Meta.ping.description}*\n Exemple: `/ping`", False),
           ("shutdown", f"*{core.Meta.shutdown.description}*\n Exemple: `/shutdown`", False),
           ("help", f"*{Help.help.description}*\n Exemple: `/help`", False)]
-        
+                
         L = 3
         async def get_page(page: int):
             emb = discord.Embed(

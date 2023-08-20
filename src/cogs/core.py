@@ -23,10 +23,9 @@ db = sqlite3.connect(db_path)
 
 class Meta(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
-        self.interaction = interaction
         self.bot = bot
     
-    @app_commands.command(name="ping", description="Ping Ash and check latency")
+    @app_commands.command(name="ping", description="Ping Ash")
     async def ping(self, ctx):
         ping_embed = discord.Embed(
             description=f"**Pong!** DWSP latency: `{self.bot.latency*1000:,.0f} ms`",
@@ -34,13 +33,14 @@ class Meta(commands.Cog):
         )
         await ctx.response.send_message(embed=ping_embed)
         
-    @app_commands.command(name="shutdown", description="Shutdown Ash properly")
+    @app_commands.command(name="shutdown", description="Shutdown Ash")
     async def shutdown(self, interaction) -> discord.Message:
         message = await interaction.response.send_message("Arrêt en cours...")
         db.commit()
         
         #This will wait 3s before closing the bot
         await asyncio.sleep(3)
+        print("[i] Arrêt du bot.")
         await self.bot.close()
     
     @app_commands.command(name="server", description="Get all the stats of the server!")

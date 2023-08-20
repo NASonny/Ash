@@ -16,6 +16,7 @@ class Bot(commands.Bot):
         
         await self.load_extension("cogs.chatgpt")
         await self.load_extension("cogs.birthday")
+        await self.load_extension("cogs.log")
         await self.load_extension("cogs.help")
         await self.load_extension("cogs.core")
         
@@ -28,6 +29,8 @@ class Bot(commands.Bot):
         print(f" [i] Running on Python: {platform.python_version()}v\n") 
         print(f"  {self.user.name} is ready (^ v ^)    ")
         await Bot.change_presence(self, activity=discord.Activity(type=discord.ActivityType.listening, name="【Ado】踊 (Odo)"))
+        
+        
         
 def main() -> None:
     load_dotenv()
