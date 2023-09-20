@@ -16,14 +16,14 @@ class Bot(commands.Bot):
         
         await self.load_extension("cogs.chatgpt")
         await self.load_extension("cogs.birthday")
+        await self.load_extension("cogs.timetrack")
+        #await self.load_extension("cogs.translate")
         await self.load_extension("cogs.log")
         await self.load_extension("cogs.help")
         await self.load_extension("cogs.core")
         
         await self.tree.sync()
         
-        await asyncio.sleep(1)
-    
     async def on_ready(self) -> None:
         print(f" [i] Running on discord: {discord.__version__}v")
         print(f" [i] Running on Python: {platform.python_version()}v\n") 
