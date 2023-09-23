@@ -38,10 +38,6 @@ class Birthday(commands.Cog):
         # This will take the name of the month from the parsed date just above
         month_name = parsed_date.strftime('***%B***')
         
-        #query = "INSERT INTO users VALUES (?, ?, ?)"
-        #cursor.execute(query, (get_user_id_by_name, get_user_id, parsed_date))
-        #db.commit()
-        
         cursor.execute("SELECT id FROM users WHERE id = ?", (get_user_id,))
         existing_user = cursor.fetchone()
 

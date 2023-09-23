@@ -29,7 +29,10 @@ class Log(commands.Cog):
     async def on_message(self, message) -> None:
         time = message.created_at.strftime("%Y-%m-%d %H:%M:%S")
         file = open('msgdis.log', 'a')
-        file.write("{} | {} in {} server : {}\n".format(time, str(message.author.display_name), message.guild.name, message.content))
+        try:
+            file.write("{} | {} in {} server : {}\n".format(time, str(message.author.display_name), message.guild.name, message.content))
+        except AttributeError: 
+            pass
         file.close()
         
         

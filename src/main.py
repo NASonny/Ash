@@ -17,7 +17,7 @@ class Bot(commands.Bot):
         await self.load_extension("cogs.chatgpt")
         await self.load_extension("cogs.birthday")
         await self.load_extension("cogs.timetrack")
-        #await self.load_extension("cogs.translate")
+        await self.load_extension("cogs.translate")
         await self.load_extension("cogs.log")
         await self.load_extension("cogs.help")
         await self.load_extension("cogs.core")

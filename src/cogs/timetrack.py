@@ -7,6 +7,10 @@ import sqlite3
 
 load_dotenv()
 
+"""
+!ISSUE : Le timer se réinitialise à chaque fois que le user ce mute donc bon.... 
+"""
+
 dbtrack = os.getenv('DB_PATH_VOICETRACK')
 print(f"Database Voicetrack path: {dbtrack}")
 db = sqlite3.connect(dbtrack)
@@ -21,6 +25,7 @@ class VoiceTracker(commands.Cog):
  
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
+        
         if after.channel:
             joined_at = datetime.now()
             await self.track_time(member, after.channel, joined_at)
