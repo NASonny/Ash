@@ -93,7 +93,7 @@ Don't hesitate to give some advice or to propose some features / fix i will be v
 ## Features
 
   - Add the private message for the birthday message 
-  - Fix the time tracker (ISSUE: the timer reset when somebody muted itself)
+  - Fix the time tracker (ISSUE: the timer reset when somebody muted itself) ✅
   - Adding data visualisation with a online dashboard build with Flask or Django 
   
 
