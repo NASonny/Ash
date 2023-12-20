@@ -8,7 +8,7 @@ import sqlite3
 
 load_dotenv()
 
-db_path = os.getenv('DB_PATH')
+db_path = "db/user.db"
 print("Database path:", db_path)  # Print the path to verify it
 db = sqlite3.connect(db_path)
 cursor = db.cursor()

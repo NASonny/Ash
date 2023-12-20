@@ -4,6 +4,7 @@ from discord.ext import commands
 from cogs import birthday
 from cogs import chatgpt
 from cogs import core
+from cogs import translate
 from typing import Callable, Optional
 import math
 
@@ -72,7 +73,8 @@ class Help(commands.Cog):
           ("chatgpt", f"*{chatgpt.ChatGPT.ask_for_response.description}*\n Example: `/chatgpt your_question`\n", False),
           ("ping", f"*{core.Meta.ping.description}*\n Exemple: `/ping`", False),
           ("shutdown", f"*{core.Meta.shutdown.description}*\n Exemple: `/shutdown`", False),
-          ("help", f"*{Help.help.description}*\n Exemple: `/help`", False)]
+          ("help", f"*{Help.help.description}*\n Exemple: `/help`", False),
+          ("translate", f"*{translate.Translate.trad.description}*\n Exemple:`/translate` `[text]` `[src_language]` `[target_language]`", False)]
                 
         L = 3
         async def get_page(page: int):

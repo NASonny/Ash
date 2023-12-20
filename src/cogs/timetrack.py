@@ -7,11 +7,7 @@ import sqlite3
 
 load_dotenv()
 
-"""
-!ISSUE : Le timer se réinitialise à chaque fois que le user ce mute donc bon.... 
-"""
-
-dbtrack = os.getenv('DB_PATH_VOICETRACK')
+dbtrack = "db/voicetrack.db"
 print(f"Database Voicetrack path: {dbtrack}")
 db = sqlite3.connect(dbtrack)
 cursor = db.cursor()
@@ -25,18 +21,20 @@ class VoiceTracker(commands.Cog):
  
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
+        if before.channel != after.channel:
+            # User joined or left a voice channel
+            if after.channel:
+                # User joined a voice channel
+                joined_at = datetime.now()
+                await self.track_time(member, after.channel, joined_at)
+                print(f"Track time joined: {joined_at}, {member.display_name} joined")
+            elif before.channel:
+                # User left a voice channel
+                left_at = datetime.now()
+                print(f"Left at: {left_at}, {member.display_name} left")
+                joined_at = await self.get_join_time(member.id)
+                await self.track_time(member, before.channel, joined_at, left_at)
         
-        if after.channel:
-            joined_at = datetime.now()
-            await self.track_time(member, after.channel, joined_at)
-            
-        elif before.channel:
-            left_at = datetime.now()
-            print(f"Left at: {left_at} somebody left {member.display_name}")
-            joined_at = await self.get_join_time(member.id) 
-            await self.track_time(member, before.channel, joined_at, left_at)
-            
-    
     async def get_join_time(self, user_id):
         with sqlite3.connect(dbtrack) as db:
             row = db.execute("SELECT joined_at FROM voice_data WHERE id = ?", (user_id,))
@@ -56,7 +54,7 @@ class VoiceTracker(commands.Cog):
             
             if joined_at and left_at:
                 # Calculer la durée seulement si joined_at et left_at existent
-                duration = (left_at - joined_at).total_seconds() / 60
+                duration = (left_at - joined_at).total_seconds() / 3600
                 duration = round(duration, 2)
                 total_duration += duration
                 
@@ -72,14 +70,13 @@ class VoiceTracker(commands.Cog):
                 db.execute("""UPDATE voice_data SET duration = CASE WHEN id = ? THEN ? ELSE duration END WHERE id = ? """, (member.id, duration, member.id))
                 db.commit()
                 
-            print(f"Track time joined: {joined_at} somebody join {member.display_name}")
             db.execute("""
                 INSERT INTO voice_data (username, id, channel_id, joined_at, left_at)
                 VALUES (?, ?, ?, ?, ?)
                 ON CONFLICT(id) DO UPDATE SET
                     joined_at = excluded.joined_at,
                     left_at = excluded.left_at
-            """, (member.display_name, member.id, channel.id, joined_at, left_at))
+            """, (member.name, member.id, channel.id, joined_at, left_at))
             db.commit()
 
 async def setup(bot: commands.Bot) -> None:

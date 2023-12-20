@@ -17,7 +17,7 @@ from deepl import Translator
 
 load_dotenv()
 api_key = os.getenv("DEEPL_APIKEY")
-print(api_key)
+print(f"Your DeepL Key is : {api_key}")
 translator = deepl.Translator(api_key)
 
 if api_key is None:

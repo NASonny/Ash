@@ -1,7 +1,7 @@
 {
     "workbench.colorCustomizations": {
       // The background is optional
-      "terminal.background": "#282a36",
+      "terminal.background": "#1E1E1E",
       "terminalCursor.background": "#282a36",
       "terminalCursor.foreground": "#97979b",
       "terminal.selectionBackground": "#97979b33",

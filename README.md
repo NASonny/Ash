@@ -1,13 +1,14 @@
 
-<div align="center"">
+<div style="text-align: center;">
   <img src="https://i.ibb.co/PDctz6K/Logo-Ash-Blanc.png" alt="Logo" width="300">
 </div>
 
 
-<div align="center"">
-  <h1>What is Ash ?</h1>
-  I'm finally happy to actually release a mid-finished version of my discord bot and theres is a little description of it :
-  *Ash is an innovative bot with collaboration, multimedia, data visualization, and API integration features.*
+<div style="text-align: center;">
+<h1>What is Ash ?</h1>
+I'm finally happy to actually release a mid-finished version of my discord bot and theres is a little description of it :
+
+*Ash is an innovative bot with collaboration, multimedia, data visualization, and API integration features.*
 </div>
 
 ## Tech Use
@@ -22,15 +23,20 @@
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `DISCORD_TOKEN` | `string` | **Required**. Your API key |
-| `API_GPT_KEY` | `string` | **Required**. Your API key |
-| `DEEPL_APIKEY` | `string` | **Required**. Your API key |
-| `DB_PATH` | `path` | **Not Required**. Path to the database |
-| `DB_PATH_VOICETRACK` | `path` | **Not Required**. Path to the database |
+| `DISCORD_TOKEN` | `string` | **Required**. Your Discord Token |
+| `API_GPT_KEY` | `string` | **Required**. Your GPT API Key |
+| `DEEPL_APIKEY` | `string` | **Required**. Your DeepL API Key |
+| `DB_PATH` | `path` | **Ineffective**. Path to the database |
+| `DB_PATH_VOICETRACK` | `path` | **Ineffective**. Path to the database |
 
 
-You can use the **DB_PATH** and **DB_PATH_VOICETRACK**  as well as you can not need  it to use if you can do it without for myself i prefer the version
-harcoded even if i know that not really good ^^
+You can use the **DB_PATH** and **DB_PATH_VOICETRACK**  as well as you can not need  it to use if you can do it without for myself i prefer the version harcoded even if i know that not really good ^^
+
+**EDIT**: *After some reflexions i decided to not put an harcoded values in it, firstly because it made my code not worthy and secondly that was useless. I will not deleted the part that i talk about because i want to let people know the way i was going in.*
+
+*I will also try to put it in a docker compose or images and also a file to install all dependencies at the right version so theres is less things to do manually, and make the bot taking less space and still be effective.*
+
+
 
 ## Installation
 
@@ -69,8 +75,13 @@ In the code you can see sqlite3 sometimes
 I decided to use it because for me I think it would be enough of course there are better and especially aiosqlite however I am not informed enough if this one was well developed but it was created for asynchronous programs exactly what does discord.py 
 thus with you to see if you want to use it! :)
 
-I'd like to specify one thing about the database you need to make a folder db (if its not here) at the root of the project ^^ 
+I'd like to specify one thing about the database you need to make a folder db at the root of the project ^^ 
 
+`What the folder should look like:`
+
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/WK9vHwh/Capture-d-cran-2023-12-20-171138.png" alt="Capture-d-cran-2023-12-20-171138" border="0"></a>
+
+**For user.db and voicetrack.db this will be automatically created when starting the bot**
 ## FAQ
 
 #### What does the bot add to discord?
@@ -87,13 +98,13 @@ The bot adds a few functions, not an entire new setup, but it is still pleasant 
 ## Feedback
 
   #### *Why did i need to do this project?*
-  - I know it's not the craziest or the best project you can create, but it was a way of improving myself and challenging myself to make a quality bot discord, and that's what I think I've achieved. Some people will say it's useless or even rubbish, but I'm proud of what I've produced and it gives me motivation, above all.\
+  - I know it's not the craziest or the best project you can create, but it was a way of improving myself and challenging myself to make a quality bot discord, and that's what I think I've achieved. Some people will say it's useless or even rubbish, but I'm proud of what I've produced and it gives me motivation, above all.
   
 Don't hesitate to give some advice or to propose some features / fix i will be very happy !
 ## Features
 
   - Add the private message for the birthday message 
-  - Fix the time tracker (ISSUE: the timer reset when somebody muted itself) ✅
+  - ✅ Fix the time tracker (the issue was that other changing on the status would restart the time tracker)
   - Adding data visualisation with a online dashboard build with Flask or Django 
   
 
@@ -101,4 +112,3 @@ Don't hesitate to give some advice or to propose some features / fix i will be v
 
 - [@NASonny](https://github.com/NASonny)
 - Thank to [@Shiyro](https://github.com/Shiyro) who help me a little to understand some error i made ^^
-

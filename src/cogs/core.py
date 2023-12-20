@@ -10,6 +10,7 @@ from discord.ext.commands import Cog
 from discord import Activity, ActivityType
 import sqlite3
 import os
+from colorama import Fore
 from dotenv import load_dotenv
 from datetime import datetime, timezone
 
@@ -17,9 +18,6 @@ timezone = pytz.timezone('Europe/Paris')
 now = datetime.now(timezone)
 
 load_dotenv()
-
-db_path = os.environ.get('DB_PATH')
-db = sqlite3.connect(db_path)
 
 class Meta(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -40,7 +38,7 @@ class Meta(commands.Cog):
         
         #This will wait 3s before closing the bot
         await asyncio.sleep(3)
-        print("[i] Arrêt du bot.")
+        print(Fore.GREEN + "[i]", "Arrêt du bot.")
         await self.bot.close()
     
     @app_commands.command(name="server", description="Get all the stats of the server!")
@@ -63,9 +61,6 @@ class Meta(commands.Cog):
             server_embed.add_field(name=name, value=value, inline=inline)
         
         await ctx.response.send_message(embed=server_embed)
-                    
-                    
-        
-    
+
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(Meta(bot))
