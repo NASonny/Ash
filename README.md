@@ -1,10 +1,9 @@
 
-<div style="text-align: center;">
+<div align="center";>
   <img src="https://i.ibb.co/PDctz6K/Logo-Ash-Blanc.png" alt="Logo" width="300">
 </div>
 
-
-<div style="text-align: center;">
+<div align="center";>
 <h1>What is Ash ?</h1>
 I'm finally happy to actually release a mid-finished version of my discord bot and theres is a little description of it :
 
@@ -19,7 +18,6 @@ I'm finally happy to actually release a mid-finished version of my discord bot a
 [OpenAI](https://openai.com/blog/openai-api),  [DeepL](https://www.deepl.com/fr/docs-api),  [Discord.py](https://pypi.org/project/discord.py/)
 
 ## API Reference
-
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
